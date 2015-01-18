@@ -51,7 +51,17 @@ hist(SumData$steps)
 hist(SumNewData$steps)
 Newmean<-mean(SumNewData$steps)
 Newmedian<-median(SumNewData$steps)
-
 ```
-
 ## Are there differences in activity patterns between weekdays and weekends?
+```{R}
+Sys.setlocale("LC_TIME","eng") 
+NewData$type<-"weekday"  
+rows <- nrow(NewData)
+for(i in 1:rows)
+{
+  if (weekdays(as.Date(NewData[i,]$date))=="Sunday"|weekdays(as.Date(NewData[i,]$date))=="Saturday")
+  {
+     NewData[i,]$type <- "weekend"
+  } 
+}
+```
