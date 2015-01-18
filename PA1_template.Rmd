@@ -64,4 +64,9 @@ for(i in 1:rows)
      NewData[i,]$type <- "weekend"
   } 
 }
+AveWeekData <- aggregate(steps~interval,subset(NewData,type=="weekday"),FUN=mean,na.rm=TRUE)
+AveWeekendData <- aggregate(steps~interval,subset(NewData,type=="weekend"),FUN=mean,na.rm=TRUE)      
+par(mfrow=c(2,1))
+plot(AveWeekData$steps~AveWeekData$interval,type="l")
+plot(AveWeekendData$steps~AveWeekendData$interval,type="l")
 ```
